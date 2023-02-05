@@ -1,27 +1,24 @@
+import { lazy } from "react";
+import GlobalLayout from "./_layout";
 
-import React from 'react';
-import { Outlet } from 'react-router-dom';
-
-
-const DynamicIndex = React.lazy(() => import('./pages/index'));
-const DynamicProductIndex = React.lazy(() => import('./pages/product/index'));
-const DynamicProductId = React.lazy(() => import('./pages/product/[id]'));
-
+const Index = lazy(() => import("./pages/index"));
+const ProductIndex = lazy(() => import("./pages/product/index"));
+const ProdictId = lazy(() => import("./pages/product/[id]"));
 
 export const routes = [
   {
-    path: '/',
-    element: <Outlet />,
+    path: "/",
+    element: <GlobalLayout />,
     children: [
-      { path: '/', element: <DynamicIndex />, index: true },
-      { path: '/product', element: <DynamicProductIndex />, index: true },
-      { path: '/product/:id', element: <DynamicProductId />, },
-    ]
-  }
-]
+      { path: "/", element: <Index />, index: true },
+      { path: "/product", element: <ProductIndex />, index: true },
+      { path: "/product/:id", element: <ProdictId /> },
+    ],
+  },
+];
 
 export const pages = [
-  { route: '/' },
-  { route: '/product' },
-  { route: '/product/:id' },
-]
+  { route: "/" },
+  { route: "/product" },
+  { route: "/product/:id" },
+];
