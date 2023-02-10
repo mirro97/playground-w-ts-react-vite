@@ -1,24 +1,30 @@
-import { PokemonHome } from "@/types";
+import { PokemonBasic } from "@/types";
+import { useQueries } from "react-query";
 import axios from "../../plugins/axios";
 
-// 포켓몬스터 공식 api 는 포켓몬 전체 조회가 불가능하기 때문에 해당 방식으로 해야함
+// 포켓몬 detail data 가져오기 (url을 통해)
+export const getPokemonInfo = async (url: string) => {
+  let { data } = await axios.get(url);
 
-const getPokemonData = (pokemon: PokemonHome) => {
-  let url = pokemon.url;
-  axios
-    .get(url)
-    .then((res) => res.data)
-    .then((data) => console.log("왔음", data));
+  return data;
 };
 
-export const getPoketmonListAll = async () => {
-  await axios
-    .get("/pokemon")
+export const getPokemonData = (pokemon: PokemonBasic) => {
+  let data = axios
+    .get(pokemon.url)
+    .then((res) => res.data)
+    .then((pokemon) => pokemon);
+
+  // console.log("??", data);
+  return data;
+};
+
+const OFFSET = 20;
+export const getPoketmonListAll = async ({ pageParam = 0 }) => {
+  return await axios
+    .get("/pokemon", {
+      params: { limit: OFFSET, offset: pageParam },
+    })
     .then((response) => response.data)
-    .then((pokemonAll) => {
-      console.log("@", pokemonAll);
-      pokemonAll?.results?.forEach((pokemon: PokemonHome) => {
-        getPokemonData(pokemon);
-      });
-    });
+    .then((pokemonAll) => pokemonAll);
 };
