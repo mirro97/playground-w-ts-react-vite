@@ -4,7 +4,7 @@ import { Header } from "./components/header";
 
 const Layout: React.FC = () => {
   return (
-    <div>
+    <div className="bg-gradient-to-t from-[#4ea75d42] bg-fixed">
       {/* <Suspense> */}
       <Header />
       <Outlet />

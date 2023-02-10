@@ -35,7 +35,7 @@ const MainPage = () => {
       {status === "loading" && <p>불러오는 중</p>}
       {status === "error" && <p>{error?.message}</p>}
       {status === "success" && (
-        <>
+        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-1">
           {/* {pokemonList.pages.map((group, index) =>
             group.results.map((pokemon: PokemonBasic, index: number) => (
               <PokemonCard key={index} pokemonList={pokemon} />
@@ -44,8 +44,8 @@ const MainPage = () => {
           {pokemonList.pages.map((group, index) => (
             <Pokemons key={index} pokemons={group.results} />
           ))}
-          <div ref={ref}>!!!!!!!!!!</div>
-        </>
+          <div ref={ref} />
+        </div>
       )}
     </div>
   );

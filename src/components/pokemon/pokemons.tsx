@@ -1,9 +1,14 @@
+import { PokemonBasic } from "@/types";
 import { PokemonCard } from "./card";
 
-export const Pokemons = ({ pokemons }) => {
+type PockemonPorps = {
+  pokemons: [PokemonBasic];
+};
+
+export const Pokemons = ({ pokemons }: PockemonPorps) => {
   return (
     <>
-      {pokemons.map((pokemon) => (
+      {pokemons.map((pokemon: PokemonBasic) => (
         <PokemonCard key={pokemon.url} pokemonList={pokemon} />
       ))}
     </>

@@ -1,7 +1,8 @@
 export const Header = () => {
   return (
     <>
-      <header className="p-3 font-semibold text-[24px] flex justify-center">
+      <header className="font-pretendard p-4 font-bold text-[24px] flex justify-center">
+        <img src="" alt="" />
         My Pokemon Encyclopedia
       </header>
     </>
