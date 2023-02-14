@@ -5,10 +5,10 @@ import { Header } from "./components/header";
 const Layout: React.FC = () => {
   return (
     <div className="bg-gradient-to-t from-[#4ea75d42] bg-fixed">
-      {/* <Suspense> */}
-      <Header />
-      <Outlet />
-      {/* </Suspense> */}
+      <Suspense fallback="잠시만요">
+        <Header />
+        <Outlet />
+      </Suspense>
     </div>
   );
 };

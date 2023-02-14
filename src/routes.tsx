@@ -2,8 +2,8 @@ import { lazy } from "react";
 import GlobalLayout from "./_layout";
 
 const Index = lazy(() => import("./pages/index"));
-const ProductIndex = lazy(() => import("./pages/product/index"));
-const ProdictId = lazy(() => import("./pages/product/[id]"));
+// const PokemonIndex = lazy(() => import("./pages/pokemon/index"));
+const PokemonId = lazy(() => import("./pages/pokemon/[id]"));
 
 export const routes = [
   {
@@ -11,8 +11,8 @@ export const routes = [
     element: <GlobalLayout />,
     children: [
       { path: "/", element: <Index />, index: true },
-      { path: "/product", element: <ProductIndex />, index: true },
-      { path: "/product/:id", element: <ProdictId /> },
+      // { path: "/pokemon", element: <PokemonIndex />, index: true },
+      { path: "/pokemon/:id", element: <PokemonId /> },
     ],
   },
 ];

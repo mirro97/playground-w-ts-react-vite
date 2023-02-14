@@ -7,7 +7,6 @@ import { Pokemons } from "@/components/pokemon/pokemons";
 
 const MainPage = () => {
   const [ref, isView] = useInView();
-  const [pokemonData, setPokemonData] = useState([]);
 
   const {
     data: pokemonList, // data.pages를 갖고 있는 배열

@@ -2,6 +2,7 @@ import { getPokemonInfo } from "@/core/apis/pokemonList";
 import { PokemonBasic } from "@/types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 
 type pokemonProps = {
   pokemonList: PokemonBasic;
@@ -49,13 +50,16 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
   );
 
   return (
-    <div className="flex flex-col p-2 w-full bg-[#fff] rounded-lg">
+    <Link
+      to={`/pokemon/${pokemonInfo?.id}`}
+      className="flex flex-col p-5 w-full bg-[#fff] rounded-lg"
+    >
       <div className="flex items-center text-base">
         <img
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
           alt="포켓볼"
         />
-        <span>{pokemonList?.name}</span>
+        <span className="font-galmuri">{pokemonList?.name}</span>
       </div>
       <span className="font-galmuri"># {pokemonInfo?.id}</span>
       <LazyLoadImage
@@ -80,6 +84,6 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
           );
         })}
       </div>
-    </div>
+    </Link>
   );
 };
