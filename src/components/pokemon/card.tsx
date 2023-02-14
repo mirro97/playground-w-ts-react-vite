@@ -14,6 +14,33 @@ type pokemonType = {
   };
 };
 
+type LabelColorType = {
+  [key: string]: string;
+};
+
+const labelColor: LabelColorType = {
+  normal: "bg-normal",
+  fighting: "bg-fighting",
+  flying: "bg-flying",
+  poison: "bg-poison",
+  ground: "bg-ground",
+  rock: "bg-rock",
+  bug: "bg-bug",
+  ghost: "bg-ghost",
+  steel: "bg-steel",
+  fire: "bg-fire",
+  water: "bg-water",
+  grass: "bg-grass",
+  electric: "bg-electric",
+  psychic: "bg-psychic",
+  ice: "bg-ice",
+  dragon: "bg-dragon",
+  dark: "bg-dark",
+  fairy: "bg-fairy",
+  unknown: "bg-unknown",
+  shadow: "bg-shadow",
+};
+
 export const PokemonCard = ({ pokemonList }: pokemonProps) => {
   const { data: pokemonInfo } = useQuery(
     ["pokemons", pokemonList.url],
@@ -21,17 +48,16 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
     { enabled: !!pokemonList }
   );
 
-  // console.log(pokemonInfo);
-
   return (
-    <div className="flex flex-col p-2">
-      <span className="text-base">{pokemonList?.name}</span>
-      <span className="font-galmuri">Id: {pokemonInfo?.id}</span>
-      <div>
-        {pokemonInfo?.types?.map((type: pokemonType) => {
-          return <span key={type?.slot}>{type?.type?.name}</span>;
-        })}
+    <div className="flex flex-col p-2 w-full bg-[#fff] rounded-lg">
+      <div className="flex items-center text-base">
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
+          alt="포켓볼"
+        />
+        <span>{pokemonList?.name}</span>
       </div>
+      <span className="font-galmuri"># {pokemonInfo?.id}</span>
       <LazyLoadImage
         key={pokemonInfo?.id}
         src={pokemonInfo?.sprites?.front_default}
@@ -40,6 +66,20 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
         width={120}
         height={120}
       />
+      <div className="flex">
+        {pokemonInfo?.types?.map((type: pokemonType) => {
+          return (
+            <div
+              className={`px-12px type-label mr-1 ${
+                labelColor[type?.type?.name]
+              }`}
+              key={type?.slot}
+            >
+              <span className="text-sm">{type?.type?.name}</span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

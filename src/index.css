@@ -10,3 +10,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .type-label {
+    border-radius: 24px;
+    color: #fff;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+}
+
+body {
+  font-family: "Pretendard-Regular", sans-serif;
+  letter-spacing: -0.4px;
+  font-size: 15px;
+  color: #2a2a2a;
+}
