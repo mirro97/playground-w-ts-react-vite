@@ -4,18 +4,11 @@ import axios from "../../plugins/axios";
 
 // 포켓몬 detail data 가져오기 (url을 통해)
 export const getPokemonInfo = async (url: string) => {
-  let { data } = await axios.get(url);
-
-  return data;
-};
-
-export const getPokemonData = (pokemon: PokemonBasic) => {
-  let data = axios
-    .get(pokemon.url)
+  let data = await axios
+    .get(url)
     .then((res) => res.data)
     .then((pokemon) => pokemon);
 
-  // console.log("??", data);
   return data;
 };
 
@@ -27,4 +20,8 @@ export const getPoketmonListAll = async ({ pageParam = 0 }) => {
     })
     .then((response) => response.data)
     .then((pokemonAll) => pokemonAll);
+};
+
+export const getPokemonListWithType = async (typeId: string) => {
+  return await axios.get(`/type/${typeId}`).then((res) => res);
 };

@@ -26,6 +26,14 @@ export interface PokemonVersion {
   version: PokemonBasic;
 }
 
+export interface PokemonType {
+  slot: number;
+  type: {
+    name: string;
+    url: string;
+  };
+}
+
 export interface PokemonDetail {
   abilities: PokemonAblities;
   base_experience: number;
@@ -39,7 +47,7 @@ export interface PokemonDetail {
   id: number;
   is_default: boolean;
   location_area_encounters: string;
-  // moves: , 데이터가 너무 많아 일단 생략
+  // moves: ,
   name: string;
   order: number;
   // past_types: ,
@@ -50,10 +58,7 @@ export interface PokemonDetail {
     effort: number;
     stat: PokemonBasic;
   };
-  types: {
-    slot: number;
-    type: PokemonBasic;
-  };
+  types: PokemonType;
   weight: number;
 }
 

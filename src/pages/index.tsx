@@ -4,6 +4,7 @@ import { getPoketmonListAll } from "../core/apis/pokemonList";
 import { useEffect, useState } from "react";
 import { group } from "console";
 import { Pokemons } from "@/components/pokemon/pokemons";
+import TypeNavigationBar from "@/components/typeNavigationBar";
 
 const MainPage = () => {
   const [ref, isView] = useInView();
@@ -34,17 +35,15 @@ const MainPage = () => {
       {status === "loading" && <p>불러오는 중</p>}
       {status === "error" && <p>{error?.message}</p>}
       {status === "success" && (
-        <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
-          {/* {pokemonList.pages.map((group, index) =>
-            group.results.map((pokemon: PokemonBasic, index: number) => (
-              <PokemonCard key={index} pokemonList={pokemon} />
-            ))
-          )} */}
-          {pokemonList.pages.map((group, index) => (
-            <Pokemons key={index} pokemons={group.results} />
-          ))}
-          <div ref={ref} />
-        </div>
+        <>
+          <TypeNavigationBar />
+          <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
+            {pokemonList.pages.map((group, index) => (
+              <Pokemons key={index} pokemons={group.results} />
+            ))}
+            <div ref={ref} />
+          </div>
+        </>
       )}
     </div>
   );

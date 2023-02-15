@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import PokemonType from "./pages/pokemon/type/[type]";
 import GlobalLayout from "./_layout";
 
 const Index = lazy(() => import("./pages/index"));
@@ -13,6 +14,7 @@ export const routes = [
       { path: "/", element: <Index />, index: true },
       // { path: "/pokemon", element: <PokemonIndex />, index: true },
       { path: "/pokemon/:id", element: <PokemonId /> },
+      { path: "/pokemon/type/:type", element: <PokemonType /> },
     ],
   },
 ];
@@ -21,4 +23,5 @@ export const pages = [
   { route: "/" },
   { route: "/product" },
   { route: "/product/:id" },
+  { route: "/product/:type" },
 ];

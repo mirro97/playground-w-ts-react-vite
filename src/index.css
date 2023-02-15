@@ -13,7 +13,7 @@
 
 @layer components {
   .type-label {
-    border-radius: 24px;
+    border-radius: 23px;
     color: #fff;
   }
 }
@@ -35,4 +35,9 @@ body {
   letter-spacing: -0.4px;
   font-size: 15px;
   color: #2a2a2a;
+}
+
+a,
+span {
+  display: block;
 }

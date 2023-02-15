@@ -10,6 +10,7 @@ module.exports = {
       padding: {
         "3px": "3px",
         "12px": "12px",
+        "16px": "16px",
       },
     },
     colors: {

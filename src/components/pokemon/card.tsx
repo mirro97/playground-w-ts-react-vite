@@ -1,45 +1,12 @@
 import { getPokemonInfo } from "@/core/apis/pokemonList";
-import { PokemonBasic } from "@/types";
+import { PokemonBasic, PokemonType } from "@/types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import TypeLabel from "@/components/pokemon/typeLabel";
 
 type pokemonProps = {
   pokemonList: PokemonBasic;
-};
-
-type pokemonType = {
-  slot: string;
-  type: {
-    name: string;
-  };
-};
-
-type LabelColorType = {
-  [key: string]: string;
-};
-
-const labelColor: LabelColorType = {
-  normal: "bg-normal",
-  fighting: "bg-fighting",
-  flying: "bg-flying",
-  poison: "bg-poison",
-  ground: "bg-ground",
-  rock: "bg-rock",
-  bug: "bg-bug",
-  ghost: "bg-ghost",
-  steel: "bg-steel",
-  fire: "bg-fire",
-  water: "bg-water",
-  grass: "bg-grass",
-  electric: "bg-electric",
-  psychic: "bg-psychic",
-  ice: "bg-ice",
-  dragon: "bg-dragon",
-  dark: "bg-dark",
-  fairy: "bg-fairy",
-  unknown: "bg-unknown",
-  shadow: "bg-shadow",
 };
 
 export const PokemonCard = ({ pokemonList }: pokemonProps) => {
@@ -71,17 +38,8 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
         height={120}
       />
       <div className="flex">
-        {pokemonInfo?.types?.map((type: pokemonType) => {
-          return (
-            <div
-              className={`px-12px type-label mr-1 ${
-                labelColor[type?.type?.name]
-              }`}
-              key={type?.slot}
-            >
-              <span className="text-sm">{type?.type?.name}</span>
-            </div>
-          );
+        {pokemonInfo?.types?.map((type: PokemonType, index: number) => {
+          return <TypeLabel key={index} typeData={type} />;
         })}
       </div>
     </Link>
