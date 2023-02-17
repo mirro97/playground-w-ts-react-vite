@@ -37,7 +37,7 @@ const TypeLabel = ({ typeData }: PockemonTypePorps) => {
   return (
     <button
       onClick={() => navigate(`/pokemon/type/${typeData?.type?.name}`)}
-      className={`px-16px py-3px type-label mr-1 ${
+      className={`group-first:m-1 px-16px py-3px type-label mr-1 font-semibold ${
         labelColor[typeData?.type?.name]
       }`}
       key={typeData?.type?.name}

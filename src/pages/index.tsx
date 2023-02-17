@@ -1,8 +1,7 @@
 import { useInfiniteQuery, useQueries, useQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
 import { getPoketmonListAll } from "../core/apis/pokemonList";
-import { useEffect, useState } from "react";
-import { group } from "console";
+import { useEffect } from "react";
 import { Pokemons } from "@/components/pokemon/pokemons";
 import TypeNavigationBar from "@/components/typeNavigationBar";
 
@@ -24,20 +23,19 @@ const MainPage = () => {
       return Number(new URL(next).searchParams.get("offset"));
     },
   });
-
   // 무한 스크롤
   useEffect(() => {
     if (isView && hasNextPage) fetchNextPage();
   }, [isView]);
 
   return (
-    <div className="px-9">
+    <div className="px-4 sm:px-12">
       {status === "loading" && <p>불러오는 중</p>}
-      {status === "error" && <p>{error?.message}</p>}
+      {/* {status === "error" && <p>{error?.message}</p>} */}
       {status === "success" && (
         <>
           <TypeNavigationBar />
-          <div className="grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
+          <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
             {pokemonList.pages.map((group, index) => (
               <Pokemons key={index} pokemons={group.results} />
             ))}

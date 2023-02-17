@@ -22,6 +22,10 @@ export const getPoketmonListAll = async ({ pageParam = 0 }) => {
     .then((pokemonAll) => pokemonAll);
 };
 
-export const getPokemonListWithType = async (typeId: string) => {
+export const getPokemonListWithType = async (typeId: string | undefined) => {
   return await axios.get(`/type/${typeId}`).then((res) => res.data);
+};
+
+export const getPokemonListWithSpecies = async (name: string) => {
+  return await axios.get(`/pokemon-species/${name}`).then((res) => res.data);
 };

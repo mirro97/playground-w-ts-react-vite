@@ -3,7 +3,7 @@ import { useRoutes } from "react-router-dom";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { routes } from "./routes";
 import React from "react";
-import "./index.css";
+import "@/styles/global.css";
 
 const App = () => {
   const elem = useRoutes(routes);

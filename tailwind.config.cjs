@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         galmuri: ["Galmuri9"],
         pretendard: ["Pretendard-Regular"],
+        Tenada: ["Tenada"],
       },
       padding: {
         "3px": "3px",
@@ -34,6 +35,8 @@ module.exports = {
       fairy: "#DAB4D4",
       unknown: "#d5ec6d",
       shadow: "#4b4f71",
+
+      "gray-100": "#b0b8c1",
     },
   },
   plugins: [],
