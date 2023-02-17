@@ -36,6 +36,12 @@ const PokemonDetail = () => {
         ))}
       </div>
       <div>
+        포켓몬 움직이는 이미지
+        <LazyLoadImage
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/649.gif`}
+        />
+      </div>
+      <div>
         포켓몬 이미지
         <div className="flex">
           {PokemonImgType.map(
