@@ -50,7 +50,7 @@ div#root {
 a,
 span {
   display: block;
-  font-family: "Pretendard", sans-serif;
+  /* font-family: "Pretendard", sans-serif; */
 }
 
 button {

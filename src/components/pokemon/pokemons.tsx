@@ -1,9 +1,9 @@
 import { PokemonBasic } from "@/types";
 import { PokemonCard } from "./card";
 
-type PockemonPorps = {
+interface PockemonPorps {
   pokemons: [PokemonBasic];
-};
+}
 
 export const Pokemons = ({ pokemons }: PockemonPorps) => {
   return (

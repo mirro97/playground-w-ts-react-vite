@@ -1,4 +1,4 @@
 import { useInfiniteQuery } from "react-query";
-import { getPoketmonListAll } from "../apis/pokemonList";
+import { getPoketmonListAll } from "@/core/apis/pokemon";
 
 export const pokemonList = () => {};

@@ -1,11 +1,17 @@
+import { language } from "@/core/recoil/language";
 import { PokemonType } from "@/types";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+
+type LabelConvertedType = {
+  [key: string]: string;
+};
 
 type LabelColorType = {
   [key: string]: string;
 };
 
-const labelColor: LabelColorType = {
+const LabelColor: LabelColorType = {
   normal: "bg-normal",
   fighting: "bg-fighting",
   flying: "bg-flying",
@@ -27,22 +33,51 @@ const labelColor: LabelColorType = {
   unknown: "bg-unknown",
   shadow: "bg-shadow",
 };
+const ConvertedText: LabelConvertedType = {
+  normal: "노말",
+  fighting: "격투",
+  flying: "비행",
+  poison: "독",
+  ground: "땅",
+  rock: "바위",
+  bug: "벌레",
+  ghost: "고스트",
+  steel: "강철",
+  fire: "불꽃",
+  water: "물",
+  grass: "풀",
+  electric: "전기",
+  psychic: "에스퍼",
+  ice: "얼음",
+  dragon: "드래곤",
+  dark: "악",
+  fairy: "페어리",
+  unknown: "???",
+  shadow: "다크",
+};
 
 interface PockemonTypePorps {
   typeData: PokemonType;
 }
 
 const TypeLabel = ({ typeData }: PockemonTypePorps) => {
+  const [lang, setLang] = useRecoilState(language);
   const navigate = useNavigate();
+
   return (
     <button
       onClick={() => navigate(`/pokemon/type/${typeData?.type?.name}`)}
-      className={`group-first:m-1 px-16px py-3px type-label mr-1 font-semibold ${
-        labelColor[typeData?.type?.name]
-      }`}
+      className={`group-first:m-1 group-first:w-max px-[30px] w-1/2 py-3px type-label mr-1 font-semibold ${
+        LabelColor[typeData?.type?.name]
+      }
+    `}
       key={typeData?.type?.name}
     >
-      <span className="text-sm">{typeData?.type?.name}</span>
+      <span className="text-sm">
+        {lang.lang === "en"
+          ? typeData?.type?.name
+          : ConvertedText[typeData?.type?.name]}
+      </span>
     </button>
   );
 };

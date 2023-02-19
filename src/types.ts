@@ -16,9 +16,13 @@ export interface PokemonAblities {
   slot: number;
 }
 
+export interface PokemonLanguage {
+  language: PokemonBasic;
+}
+
 export interface PokemonGameIndices {
   game_index: string;
-  version: { name: string; url: string };
+  version: PokemonBasic;
 }
 
 export interface PokemonVersion {
@@ -34,7 +38,62 @@ export interface PokemonType {
   };
 }
 
-export interface PokemonDetail {
+export interface PokemonName {
+  name: string;
+  language: {
+    name: string;
+    url: string;
+  };
+}
+
+export interface PokemonGenera {
+  genus: string;
+  language: {
+    name: string;
+    url: string;
+  };
+}
+
+export interface PokemonImgType {
+  [key: string]: string; // index signature 추가 -> 객체의 프로퍼티를 읽을 때 string 타입의 key 사용을 허용함
+  back_default: string;
+  back_female: string;
+  back_shiny: string;
+  back_shiny_female: string;
+  front_default: string;
+  front_female: string;
+  front_shiny: string;
+  front_shiny_female: string;
+}
+
+export interface PokemonVersionsGeneration {
+  "generation-i": { "red-blue": PokemonImgType; yellow: PokemonImgType };
+  "generation-ii": {
+    crystal: PokemonImgType;
+    gold: PokemonImgType;
+    silver: PokemonImgType;
+  };
+  "generation-iii": {
+    emerald: PokemonImgType;
+    "firered-leafgreen": PokemonImgType;
+    "ruby-sapphire": PokemonImgType;
+  };
+  "generation-iv": {
+    "diamond-pearl": PokemonImgType;
+    "heartgold-soulsilver": PokemonImgType;
+    platinum: PokemonImgType;
+  };
+  "generation-v": {
+    "black-white": { animated: PokemonImgType; front_default: string };
+  };
+  "generation-vi": {
+    "omegaruby-alphasapphire": PokemonImgType;
+    "x-y": PokemonImgType;
+  };
+  "generation-vii": { "ultra-sun-ultra-moon": PokemonImgType };
+}
+
+export interface PokemonDetailType {
   abilities: PokemonAblities;
   base_experience: number;
   forms: PokemonBasic;
@@ -47,57 +106,59 @@ export interface PokemonDetail {
   id: number;
   is_default: boolean;
   location_area_encounters: string;
-  // moves: ,
+  moves: [];
   name: string;
   order: number;
-  // past_types: ,
+  past_types: [];
   species: PokemonBasic;
-  // sprites: ,
+  sprites: {
+    [key: string]: any;
+    back_default: string;
+    back_female: string;
+    back_shiny: string;
+    back_shiny_female: string;
+    front_default: string;
+    front_female: string;
+    front_shiny: string;
+    front_shiny_female: string;
+    versions: PokemonVersionsGeneration;
+  };
   stats: {
     base_stat: number;
     effort: number;
     stat: PokemonBasic;
   };
-  types: PokemonType;
+  types: PokemonType[];
   weight: number;
 }
 
-// export type PokemonDetail = {
-// abilities: ,
-// base_experience: ,
-// forms: ,
-// game_indices: ,
-// height: ,
-// held_items: ,
-// id: ,
-// is_default: ,
-// location_area_encounters: ,
-// moves: ,
-// name: ,
-// order: ,
-// past_types: ,
-// species: ,
-// sprites: ,
-// stats: ,
-// types: ,
-// weight: ,
-// }
-
-// abilities: (2) [{…}, {…}]
-// base_experience: 39
-// forms: [{…}]
-// game_indices: (20) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
-// height: 3
-// held_items: []
-// id: 10
-// is_default: true
-// location_area_encounters: "https://pokeapi.co/api/v2/pokemon/10/encounters"
-// moves: (5) [{…}, {…}, {…}, {…}, {…}]
-// name: "caterpie"
-// order: 14
-// past_types: []
-// species: {name: 'caterpie', url: 'https://pokeapi.co/api/v2/pokemon-species/10/'}
-// sprites: {back_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/10.png', back_female: null, back_shiny: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/shiny/10.png', back_shiny_female: null, front_default: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/10.png', …}
-// stats: (6) [{…}, {…}, {…}, {…}, {…}, {…}]
-// types: [{…}]
-// weight: 29
+export interface PokemonSpecies {
+  id: number;
+  name: string;
+  order: number;
+  gender_rate: number;
+  capture_rate: number;
+  base_happiness: number;
+  is_baby: boolean;
+  is_legendary: boolean;
+  is_mythical: boolean;
+  hatch_counter: number;
+  has_gender_differences: boolean;
+  forms_switchable: boolean;
+  growth_rate: PokemonBasic;
+  pokedex_numbers: [];
+  egg_groups: PokemonBasic;
+  color: PokemonBasic;
+  shape: PokemonBasic;
+  evolves_from_species: PokemonBasic;
+  evolution_chain: {
+    url: string;
+  };
+  habitat: null;
+  generation: PokemonBasic;
+  names: PokemonName[];
+  flavor_text_entries: [];
+  form_descriptions: [];
+  genera: PokemonGenera[];
+  varieties: [];
+}

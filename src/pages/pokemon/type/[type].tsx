@@ -1,5 +1,5 @@
 import { Pokemons } from "@/components/pokemon/pokemons";
-import { getPokemonListWithType } from "@/core/apis/pokemonList";
+import { getPokemonListWithType } from "@/core/apis/pokemon";
 import { language } from "@/core/recoil/language";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";

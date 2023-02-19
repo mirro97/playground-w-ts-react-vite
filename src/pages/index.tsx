@@ -1,9 +1,9 @@
-import { useInfiniteQuery, useQueries, useQuery } from "react-query";
+import { useInfiniteQuery } from "react-query";
 import { useInView } from "react-intersection-observer";
-import { getPoketmonListAll } from "../core/apis/pokemonList";
+import { getPoketmonListAll } from "../core/apis/pokemon";
 import { useEffect } from "react";
 import { Pokemons } from "@/components/pokemon/pokemons";
-import TypeNavigationBar from "@/components/typeNavigationBar";
+import TypeNavigationBar from "@/components/TypeNavigationBar";
 
 const MainPage = () => {
   const [ref, isView] = useInView();
@@ -25,6 +25,7 @@ const MainPage = () => {
   });
   // 무한 스크롤
   useEffect(() => {
+    console.log(isView);
     if (isView && hasNextPage) fetchNextPage();
   }, [isView]);
 

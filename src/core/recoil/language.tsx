@@ -6,5 +6,6 @@ export const language = atom({
     lang: "en",
     langNum_name: 8,
     langNum_type: 7,
+    langNum_genera: 7,
   },
 });

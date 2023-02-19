@@ -20,6 +20,7 @@ export const Header = () => {
                 lang: "en",
                 langNum_name: 8,
                 langNum_type: 7,
+                langNum_genera: 7,
               })
             }
             className={`${
@@ -34,6 +35,7 @@ export const Header = () => {
                 lang: "ko",
                 langNum_name: 2,
                 langNum_type: 1,
+                langNum_genera: 1,
               })
             }
             className={`${
@@ -54,12 +56,14 @@ export const Header = () => {
                   lang: "en",
                   langNum_name: 8,
                   langNum_type: 7,
+                  langNum_genera: 7,
                 });
               else
                 setLang({
                   lang: "ko",
                   langNum_name: 2,
                   langNum_type: 1,
+                  langNum_genera: 1,
                 });
             }}
             className={`p-1`}

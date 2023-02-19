@@ -1,7 +1,4 @@
-import {
-  getPokemonInfo,
-  getPokemonListWithSpecies,
-} from "@/core/apis/pokemonList";
+import { getPokemonInfo, getPokemonListWithSpecies } from "@/core/apis/pokemon";
 import { PokemonBasic, PokemonType } from "@/types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "react-query";
@@ -10,9 +7,9 @@ import TypeLabel from "@/components/pokemon/typeLabel";
 import { useRecoilState } from "recoil";
 import { language } from "@/core/recoil/language";
 
-type pokemonProps = {
+interface pokemonProps {
   pokemonList: PokemonBasic;
-};
+}
 
 export const PokemonCard = ({ pokemonList }: pokemonProps) => {
   const [lang, setLang] = useRecoilState(language);
@@ -32,7 +29,7 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
   return (
     <Link
       to={`/pokemon/${pokemonInfo?.id}`}
-      className="flex flex-col p-5 w-full bg-[#fff] rounded-lg shadow-md"
+      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md"
     >
       <div className="flex items-center text-base">
         <img
@@ -44,14 +41,26 @@ export const PokemonCard = ({ pokemonList }: pokemonProps) => {
         </span>
       </div>
       <span className="font-galmuri"># {pokemonInfo?.id}</span>
-      <LazyLoadImage
-        key={pokemonInfo?.id}
-        src={pokemonInfo?.sprites?.front_default}
-        alt={pokemonInfo?.name}
-        className="img-lazy"
-        width={120}
-        height={120}
-      />
+
+      <div className="p-5 h-[160px] flex items-center justify-center">
+        <LazyLoadImage
+          key={pokemonInfo?.id}
+          src={
+            pokemonInfo?.sprites?.versions?.["generation-v"]?.["black-white"]
+              ?.animated?.front_default || pokemonInfo?.sprites?.front_default
+          }
+          alt={pokemonInfo?.name}
+          className="img-lazy"
+          width={
+            pokemonInfo?.sprites?.versions?.["generation-v"]?.["black-white"]
+              ?.animated?.front_default
+              ? 80
+              : 120
+          }
+          height={120}
+        />
+      </div>
+
       <div className="flex">
         {pokemonInfo?.types?.map((type: PokemonType, index: number) => {
           return <TypeLabel key={index} typeData={type} />;
