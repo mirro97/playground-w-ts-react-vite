@@ -36,7 +36,7 @@ module.exports = {
       unknown: "#d5ec6d",
       shadow: "#4b4f71",
 
-      "gray-100": "#b0b8c1",
+      "gray-100": "#99B2B9",
     },
   },
   plugins: [],

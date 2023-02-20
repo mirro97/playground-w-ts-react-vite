@@ -26,7 +26,7 @@ const typeListAll = [
 
 const TypeNavigationBar = () => {
   return (
-    <nav className="group sm:px-0 py-7 flex flex-wrap">
+    <nav className="group is-tab sm:px-0 py-7 flex flex-wrap">
       {typeListAll.map((type: PokemonType, index: number) => (
         <TypeLabel key={index} typeData={type} />
       ))}

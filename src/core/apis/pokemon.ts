@@ -1,5 +1,3 @@
-import { PokemonBasic } from "@/types";
-import { useQueries } from "react-query";
 import axios from "../../plugins/axios";
 
 // 포켓몬 detail data 가져오기 (url을 통해)
@@ -23,9 +21,12 @@ export const getPokemonInfoWithId = async (id: string | undefined) => {
 };
 
 const OFFSET = 19;
-export const getPoketmonListAll = async ({ pageParam = 0 }) => {
+export const getPoketmonListAll = async ({ pageParam = 0, search }: any) => {
+  let apiUrl = `/pokemon`;
+  if (!!search) apiUrl = `/pokemon/${search}`;
+
   return await axios
-    .get("/pokemon", {
+    .get(apiUrl, {
       params: { limit: OFFSET, offset: pageParam },
     })
     .then((response) => response.data)

@@ -1,5 +1,6 @@
 import { language } from "@/core/recoil/language";
 import { PokemonType } from "@/types";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 
@@ -67,12 +68,22 @@ const TypeLabel = ({ typeData }: PockemonTypePorps) => {
   return (
     <button
       onClick={() => navigate(`/pokemon/type/${typeData?.type?.name}`)}
-      className={`group-first:m-1 group-first:w-max px-[30px] w-1/2 py-3px type-label mr-1 font-semibold ${
+      className={`flex justify-center group-[.is-tab]:m-1 group-[.is-tab]:w-fit px-[26px] w-1/2 py-3px type-label mr-1 font-semibold ${
         LabelColor[typeData?.type?.name]
       }
     `}
       key={typeData?.type?.name}
     >
+      {typeData?.type?.name !== "unknown" &&
+        typeData?.type?.name !== "shadow" && (
+          <LazyLoadImage
+            key={typeData?.type?.name}
+            src={`/images/pokemon-type-images/${typeData?.type?.name}.svg`}
+            alt={typeData?.type?.name}
+            className="mr-1 "
+            width={20}
+          />
+        )}
       <span className="text-sm">
         {lang.lang === "en"
           ? typeData?.type?.name
