@@ -3,8 +3,8 @@ import { useInView } from "react-intersection-observer";
 import { getPoketmonListAll } from "../core/apis/pokemon";
 import { SetStateAction, useEffect, useState } from "react";
 import { Pokemons } from "@/components/pokemon/pokemons";
-import TypeNavigationBar from "@/components/TypeNavigationBar";
 import SearchTab from "@/components/SearchTab";
+import TypeNavigationBar from "@/components/TypeNavigationBar";
 
 const MainPage = () => {
   const [ref, isView] = useInView();
