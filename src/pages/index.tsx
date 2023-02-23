@@ -30,7 +30,7 @@ const MainPage = () => {
       },
     }
   );
-  console.log(pokemonList);
+  // console.log(pokemonList);
 
   // 무한 스크롤
   useEffect(() => {

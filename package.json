@@ -18,7 +18,8 @@
     "react-lazy-load-image-component": "^1.5.6",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.4.3",
-    "recoil": "^0.7.6"
+    "recoil": "^0.7.6",
+    "recoil-persist": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",

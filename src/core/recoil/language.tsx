@@ -1,4 +1,7 @@
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const { persistAtom } = recoilPersist();
 
 export const language = atom({
   key: "language",
@@ -8,4 +11,5 @@ export const language = atom({
     langNum_type: 7,
     langNum_genera: 7,
   },
+  effects: [persistAtom],
 });
