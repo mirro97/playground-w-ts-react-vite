@@ -11,6 +11,8 @@ import { useRecoilState } from "recoil";
 import Label from "@/components/Label";
 import ImageWrapByGeneration from "./generation";
 import TypeLabel from "./typeLabel";
+import ImageWrap from "@/components/common/imageShadowWrap";
+import ImageShadowWrap from "@/components/common/imageShadowWrap";
 
 interface propsType {
   pokemonInfo: PokemonDetailType;
@@ -72,7 +74,7 @@ const PokemonDetailBox = ({ pokemonInfo, pokemonSpeciesInfo }: propsType) => {
       <div className="mt-3 text-center">
         <span>{flavorText && flavorText[0]?.flavor_text}</span>
       </div>
-      <div className="flex mt-7">
+      <div className="flex mt-10">
         <div className="flex flex-col items-center mr-5">
           <div className="max-w-[180px]"></div>
           <Label context={lang.lang === "en" ? "HEIGHT" : "신장"} />
@@ -84,27 +86,33 @@ const PokemonDetailBox = ({ pokemonInfo, pokemonSpeciesInfo }: propsType) => {
           <span className="mt-3">{pokemonInfo?.weight / 10} kg</span>
         </div>
       </div>
-      <div className="mt-7 flex flex-wrap justify-center">
+
+      <div className="mt-10 max-w-3xl w-full flex flex-wrap justify-around">
         {pokemonImg.map(
           (imgtype, imgIndex) =>
             pokemonInfo?.sprites[imgtype] && (
-              <LazyLoadImage
-                key={imgIndex}
-                src={pokemonInfo?.sprites[imgtype]}
-                alt={imgtype}
-              />
+              <ImageShadowWrap key={imgIndex}>
+                <LazyLoadImage
+                  src={pokemonInfo?.sprites[imgtype]}
+                  alt={imgtype}
+                />
+              </ImageShadowWrap>
             )
         )}
       </div>
-      <div className="mt-7">
-        <span className="text-lg text-center font-bold">
-          진화 형태(api 요청 해야함)
-        </span>
+      <div className="mt-10">
+        <Label context="진화 형태(api 요청 해야함)" />
         <div>{pokemonSpeciesInfo?.evolution_chain?.url}</div>
       </div>
 
-      <div className="mt-7">
-        <span className="text-lg text-center font-bold">시리즈별 모습</span>
+      <div className="mt-10">
+        <Label
+          context={
+            lang.lang === "en"
+              ? "Pokemon Appearance Transformation by Series"
+              : "시리즈별 포켓몬 모습 변천사"
+          }
+        />
         <ImageWrapByGeneration {...pokemonInfo?.sprites?.versions} />
       </div>
     </div>

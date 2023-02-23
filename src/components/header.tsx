@@ -6,7 +6,7 @@ export const Header = () => {
   const [lang, setLang] = useRecoilState(language);
   return (
     <>
-      <header className="px-4 sm:px-12 pb-4 pt-5 font-bold text-xl sm:text-xl md:text-2xl flex items-center justify-between bg-[#5A7C88] text-[#fff]">
+      <header className="px-4 sm:px-12 pb-4 pt-5 font-bold text-lg sm:text-xl md:text-2xl flex items-center justify-between bg-[#5A7C88] text-[#fff]">
         <Link to={"/"} className="font-Tenada">
           {lang.lang === "en" && "My Pokemon Encyclopedia"}
           {lang.lang === "ko" && "나만의 포켓몬 도감"}
