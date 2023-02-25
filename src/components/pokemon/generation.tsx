@@ -7,12 +7,17 @@ import GenerationImageCard from "../common/generationImageCard";
 const ImageWrapByGeneration = (
   generationImage: PokemonVersionsGeneration | undefined
 ) => {
+  const [lang, setLang] = useRecoilState(language);
+
   return (
     <div className="mt-7">
       {(!!generationImage?.["generation-i"]?.["red-blue"]?.front_default ||
         !!generationImage?.["generation-i"]?.["yellow"]?.front_default) && (
         <div className="mb-7">
-          <span>1세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation I"}
+            {lang.lang === "ko" && "1 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Red & Blue"
@@ -32,7 +37,10 @@ const ImageWrapByGeneration = (
       {(!!generationImage?.["generation-ii"]?.["crystal"]?.front_default ||
         !!generationImage?.["generation-ii"]?.["gold"]?.front_default) && (
         <div className="mb-7">
-          <span>2세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation II"}
+            {lang.lang === "ko" && "2 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Crystal"
@@ -55,7 +63,10 @@ const ImageWrapByGeneration = (
         !!generationImage?.["generation-iii"]?.["ruby-sapphire"]
           ?.front_default) && (
         <div className="mb-7">
-          <span>3세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation III"}
+            {lang.lang === "ko" && "3 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Emerald"
@@ -91,7 +102,10 @@ const ImageWrapByGeneration = (
           ?.front_default ||
         !!generationImage?.["generation-iv"]?.["platinum"]?.front_default) && (
         <div className="mb-7">
-          <span>4세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation IV"}
+            {lang.lang === "ko" && "4 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Diamond·Pearl"
@@ -121,7 +135,10 @@ const ImageWrapByGeneration = (
       )}
       {!!generationImage?.["generation-v"]?.["black-white"]?.front_default && (
         <div className="mb-7">
-          <span>5세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation V"}
+            {lang.lang === "ko" && "5 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Black·White"
@@ -138,7 +155,10 @@ const ImageWrapByGeneration = (
         ?.front_default ||
         !!generationImage?.["generation-vi"]?.["x-y"]?.front_default) && (
         <div className="mb-7">
-          <span>6세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation VI"}
+            {lang.lang === "ko" && "6 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Omega Ruby·Alpha Sapphire"
@@ -159,7 +179,10 @@ const ImageWrapByGeneration = (
       {!!generationImage?.["generation-vii"]?.["ultra-sun-ultra-moon"]
         ?.front_default && (
         <div className="mb-7">
-          <span>7세대</span>
+          <span className="font-bold mb-2">
+            {lang.lang === "en" && "Generation VII"}
+            {lang.lang === "ko" && "7 세대"}
+          </span>
           <div className="flex flex-wrap">
             <GenerationImageCard
               enTitle="Pokémon Ultra Sun·Ultra Moon"

@@ -33,7 +33,7 @@ const PokemonDetail = () => {
   );
 
   return (
-    <div className="max-w-screen-lg mx-auto p-5">
+    <div className="max-w-screen-lg mx-auto py-24 px-5">
       <PokemonDetailBox
         pokemonInfo={pokemonInfo}
         pokemonSpeciesInfo={pokemonSpeciesInfo}

@@ -7,6 +7,7 @@ module.exports = {
         galmuri: ["Galmuri9"],
         pretendard: ["Pretendard-Regular"],
         Tenada: ["Tenada"],
+        GmarketSansMedium: ["GmarketSansMedium"],
       },
       padding: {
         "3px": "3px",

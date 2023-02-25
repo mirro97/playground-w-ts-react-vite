@@ -9,6 +9,7 @@ import { PokemonCard } from "@/components/pokemon/card";
 import { useRecoilState } from "recoil";
 import { language } from "@/core/recoil/language";
 import { GalmuriText } from "@/components/common/text";
+import { Button } from "@/components/common/button";
 
 const MainPage = () => {
   const [ref, isView] = useInView();
@@ -46,7 +47,7 @@ const MainPage = () => {
     <div className="py-24 px-4 sm:px-12 flex-1">
       <SearchTab input={input} setInput={setInput} setSearch={setSearch} />
       <TypeNavigationBar />
-      <div className="">
+      <div className="flex justify-center">
         {/* 기본 홈 진입시 pokemonListAll*/}
         {!search && (
           <>
@@ -78,11 +79,17 @@ const MainPage = () => {
               </GalmuriText>
             )}
             {pokemonListAllStatus === "error" && (
-              <GalmuriText>
-                {lang.lang === "en" && "No Results! Search Again"}
-                {lang.lang === "ko" &&
-                  "검색 결과가 없습니다! 다시 검색해주세요"}
-              </GalmuriText>
+              <div className="flex flex-col items-center">
+                <GalmuriText className="mb-14">
+                  {lang.lang === "en" && "No Results! Search Again"}
+                  {lang.lang === "ko" &&
+                    "검색 결과가 없습니다! 다시 검색해주세요"}
+                </GalmuriText>
+                <Button onClick={() => setSearch("")}>
+                  {lang.lang === "en" && "Search All "}
+                  {lang.lang === "ko" && "전체 검색"}
+                </Button>
+              </div>
             )}
             {pokemonListAllStatus === "success" && (
               <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
