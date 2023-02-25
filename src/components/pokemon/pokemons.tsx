@@ -9,7 +9,7 @@ export const Pokemons = ({ pokemons }: PockemonPorps) => {
   return (
     <>
       {pokemons.map((pokemon: PokemonBasic) => (
-        <PokemonCard key={pokemon.url} pokemonList={pokemon} />
+        <PokemonCard key={pokemon.url} pokemonIndex={pokemon.name} />
       ))}
     </>
   );

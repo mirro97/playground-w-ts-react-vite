@@ -8,10 +8,9 @@ import {
 } from "@/types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useRecoilState } from "recoil";
-import Label from "@/components/Label";
+import Label from "@/components/common/label";
 import ImageWrapByGeneration from "./generation";
 import TypeLabel from "./typeLabel";
-import ImageWrap from "@/components/common/imageShadowWrap";
 import ImageShadowWrap from "@/components/common/imageShadowWrap";
 
 interface propsType {

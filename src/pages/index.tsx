@@ -3,56 +3,97 @@ import { useInView } from "react-intersection-observer";
 import { getPoketmonListAll } from "../core/apis/pokemon";
 import { SetStateAction, useEffect, useState } from "react";
 import { Pokemons } from "@/components/pokemon/pokemons";
-import SearchTab from "@/components/SearchTab";
-import TypeNavigationBar from "@/components/TypeNavigationBar";
+import SearchTab from "@/components/searchTab";
+import TypeNavigationBar from "@/components/typeNavigationBar";
+import { PokemonCard } from "@/components/pokemon/card";
+import { useRecoilState } from "recoil";
+import { language } from "@/core/recoil/language";
+import { GalmuriText } from "@/components/common/text";
 
 const MainPage = () => {
   const [ref, isView] = useInView();
+  const [lang, setLang] = useRecoilState(language);
   const [input, setInput] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
   const {
-    data: pokemonList, // data.pages를 갖고 있는 배열
+    data: pokemonListAll, // data.pages를 갖고 있는 배열
     error, // error 객체
-    fetchNextPage, //  다음 페이지를 불러오는 함수
-    hasNextPage, // 다음 페이지가 있는지 여부, Boolean
+    fetchNextPage: pokemonListAllFetchNextPage, //  다음 페이지를 불러오는 함수
+    hasNextPage: pokemonListAllHasNextPage, // 다음 페이지가 있는지 여부, Boolean
     isFetching, // 첫 페이지 fetching 여부, Boolean
     isFetchingNextPage, // 추가 페이지 fetching 여부, Boolean
-    status, // loading, error, success 중 하나의 상태, string
+    status: pokemonListAllStatus, // loading, error, success 중 하나의 상태, string
   } = useInfiniteQuery(
     ["pokemonList", search],
     ({ pageParam = 0 }) => getPoketmonListAll({ pageParam, search }),
     {
       getNextPageParam: (lastPage, page) => {
-        const { next } = lastPage;
+        const { next }: any = lastPage;
         if (!next) return undefined;
         return Number(new URL(next).searchParams.get("offset"));
       },
     }
   );
-  // console.log(pokemonList);
+  console.log(pokemonListAll);
 
   // 무한 스크롤
   useEffect(() => {
-    if (isView && hasNextPage) fetchNextPage();
+    if (isView && pokemonListAllHasNextPage) pokemonListAllFetchNextPage();
   }, [isView]);
 
   return (
-    <div className="px-4 sm:px-12">
-      {status === "loading" && <p>불러오는 중</p>}
-      {/* {status === "error" && <p>{error?.message}</p>} */}
-      {status === "success" && (
-        <>
-          <SearchTab input={input} setInput={setInput} setSearch={setSearch} />
-          <TypeNavigationBar />
-          <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
-            {pokemonList.pages.map((group, index) => (
-              <Pokemons key={index} pokemons={group.results} />
-            ))}
-            <div ref={ref} />
-          </div>
-        </>
-      )}
+    <div className="py-24 px-4 sm:px-12 flex-1">
+      <SearchTab input={input} setInput={setInput} setSearch={setSearch} />
+      <TypeNavigationBar />
+      <div className="">
+        {/* 기본 홈 진입시 pokemonListAll*/}
+        {!search && (
+          <>
+            {pokemonListAllStatus === "loading" && (
+              <GalmuriText>
+                {lang.lang === "en" && "Loading ... "}
+                {lang.lang === "ko" && "불러오는 중 ..."}
+              </GalmuriText>
+            )}
+            {/* {status === "error" && <p>{error?.message}</p>} */}
+            {pokemonListAllStatus === "success" && (
+              <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
+                {pokemonListAll.pages.map((group, index) => (
+                  <Pokemons key={index} pokemons={group.results} />
+                ))}
+                <div ref={ref} />
+              </div>
+            )}
+          </>
+        )}
+
+        {/* 검색 결과 */}
+        {!!search && (
+          <>
+            {pokemonListAllStatus === "loading" && (
+              <GalmuriText>
+                {lang.lang === "en" && "Searching ... "}
+                {lang.lang === "ko" && "검색 중 ..."}
+              </GalmuriText>
+            )}
+            {pokemonListAllStatus === "error" && (
+              <GalmuriText>
+                {lang.lang === "en" && "No Results! Search Again"}
+                {lang.lang === "ko" &&
+                  "검색 결과가 없습니다! 다시 검색해주세요"}
+              </GalmuriText>
+            )}
+            {pokemonListAllStatus === "success" && (
+              <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
+                {pokemonListAll.pages.map((group, index) => (
+                  <PokemonCard key={index} pokemonIndex={group.name} />
+                ))}
+              </div>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 };

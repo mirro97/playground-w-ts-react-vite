@@ -28,16 +28,16 @@ const SearchInput = ({ input, setInput, setSearch }: Props) => {
     <div className="relative">
       <input
         type="text"
-        className="px-5 py-4 rounded-xl shadow-md w-full"
+        className="px-5 py-4 rounded-xl shadow-md w-full focus:outline-none"
         onChange={write}
         placeholder={placehoder()}
       />
-      <img
+      <button
         className="absolute right-[15px] top-3 hover:cursor-pointer"
-        src="/images/soothe-bell.png"
-        alt="검색"
         onClick={search}
-      />
+      >
+        <img src="/images/soothe-bell.png" alt="검색" />
+      </button>
     </div>
   );
 };

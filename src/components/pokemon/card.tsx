@@ -8,22 +8,22 @@ import { useRecoilState } from "recoil";
 import { language } from "@/core/recoil/language";
 
 interface pokemonProps {
-  pokemonList: PokemonBasic;
+  pokemonIndex: string;
 }
 
-export const PokemonCard = ({ pokemonList }: pokemonProps) => {
+export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
   const [lang, setLang] = useRecoilState(language);
 
   const { data: pokemonInfo } = useQuery(
-    ["pokemons", pokemonList.url],
-    () => getPokemonInfo(pokemonList.url),
-    { enabled: !!pokemonList }
+    ["pokemons", pokemonIndex],
+    () => getPokemonInfo(`https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`),
+    { enabled: !!pokemonIndex }
   );
 
   const { data: pokemonSpeciesInfo } = useQuery(
-    ["pokemon-species", pokemonList.name],
-    () => getPokemonListWithSpecies(pokemonList.name),
-    { enabled: !!pokemonList }
+    ["pokemon-species", pokemonIndex],
+    () => getPokemonListWithSpecies(pokemonIndex),
+    { enabled: !!pokemonIndex }
   );
 
   return (

@@ -1,13 +1,15 @@
 import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { Header } from "./components/header";
+import { Footer } from "./components/basic/footer";
+import { Header } from "./components/basic/header";
 
 const Layout: React.FC = () => {
   return (
-    <div className="bg-[#f0f2f5]">
+    <div className="flex flex-col h-full">
       <Suspense fallback="잠시만요">
         <Header />
         <Outlet />
+        <Footer />
       </Suspense>
     </div>
   );
