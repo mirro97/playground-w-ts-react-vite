@@ -29,7 +29,7 @@ export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
   return (
     <Link
       to={`/pokemon/${pokemonInfo?.id}`}
-      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md"
+      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md min-w-[300px]"
     >
       <div className="flex items-center text-base">
         <img
@@ -61,7 +61,7 @@ export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
         />
       </div>
 
-      <div className="flex">
+      <div className="flex group is-card">
         {pokemonInfo?.types?.map((type: PokemonType, index: number) => {
           return <TypeLabel key={index} typeData={type} />;
         })}

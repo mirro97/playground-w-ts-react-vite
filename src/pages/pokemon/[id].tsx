@@ -6,17 +6,6 @@ import {
 import { useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 
-const PokemonImgType = [
-  "back_default",
-  "back_female",
-  "back_shiny",
-  "back_shiny_female",
-  "front_default",
-  "front_female",
-  "front_shiny",
-  "front_shiny_female",
-];
-
 const PokemonDetail = () => {
   const { id: pokemonId } = useParams();
 
