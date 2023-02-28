@@ -1,5 +1,6 @@
 import PokemonDetailBox from "@/components/pokemon/detail";
 import {
+  getPokemonInfo,
   getPokemonInfoWithId,
   getPokemonListWithSpecies,
 } from "@/core/apis/pokemon";
@@ -20,6 +21,14 @@ const PokemonDetail = () => {
     () => getPokemonListWithSpecies(pokemonId),
     { enabled: !!pokemonId }
   );
+
+  const { data: pokemonevolutionInfo } = useQuery(
+    ["pokemon-evolution"],
+    () => getPokemonInfo(pokemonSpeciesInfo?.evolution_chain?.url),
+    { enabled: !!pokemonSpeciesInfo }
+  );
+
+  console.log("!!", pokemonevolutionInfo);
 
   return (
     <div className="max-w-screen-lg mx-auto py-24 px-5">

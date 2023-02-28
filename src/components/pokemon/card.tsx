@@ -26,10 +26,12 @@ export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
     { enabled: !!pokemonIndex }
   );
 
+  console.log("?", pokemonIndex);
+  // 현재 deoxys-normal 이란 이름이 없는데 접근해서 에러가 생김 -> -normal 삭제하는 함수 짜야할듯
   return (
     <Link
       to={`/pokemon/${pokemonInfo?.id}`}
-      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md min-w-[300px]"
+      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md min-w-full"
     >
       <div className="flex items-center text-base">
         <img

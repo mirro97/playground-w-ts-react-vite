@@ -42,7 +42,6 @@ const PokemonDetailBox = ({ pokemonInfo, pokemonSpeciesInfo }: propsType) => {
     "flavor",
     pokemonSpeciesInfo?.flavor_text_entries
   );
-  console.log("??", pokemonInfo, pokemonSpeciesInfo);
 
   return (
     <div className="flex flex-col p-10 items-center bg-[#fff] rounded-2xl shadow-xl">

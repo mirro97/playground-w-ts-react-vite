@@ -17,7 +17,7 @@ export const Header = () => {
     <>
       <header
         className={`z-10 w-full px-4 sm:px-12  font-bold text-lg sm:text-xl md:text-2xl bg-[#fff] fixed  ${
-          scrollPosition < 200 ? "" : "border-solid border-b border-[#001b371a]"
+          scrollPosition < 20 ? "" : "border-solid border-b border-[#001b371a]"
         }`}
       >
         <div className={`pb-4 pt-5  flex items-center justify-between`}>

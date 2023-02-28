@@ -2,7 +2,7 @@ import { PokemonBasic } from "@/types";
 import { PokemonCard } from "./card";
 
 interface PockemonPorps {
-  pokemons: [PokemonBasic];
+  pokemons: PokemonBasic[];
 }
 
 export const Pokemons = ({ pokemons }: PockemonPorps) => {
