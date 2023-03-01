@@ -10,7 +10,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useRecoilState } from "recoil";
 import Label from "@/components/common/label";
 import ImageWrapByGeneration from "./generation";
-import TypeLabel from "./typeLabel";
+import TypeLabel from "../common/typeLabel";
 import ImageShadowWrap from "@/components/common/imageShadowWrap";
 
 interface propsType {
@@ -22,6 +22,11 @@ interface flavorTextType {
   flavor_text: string | undefined;
   language: PokemonBasic;
   version: PokemonBasic;
+}
+
+interface nameTextType {
+  language: PokemonBasic;
+  name: string;
 }
 
 const pokemonImg: string[] = [
@@ -38,10 +43,13 @@ const pokemonImg: string[] = [
 const PokemonDetailBox = ({ pokemonInfo, pokemonSpeciesInfo }: propsType) => {
   const [lang, setLang] = useRecoilState(language);
 
+  // 포켓몬 설명 언어 변환
   let flavorText: flavorTextType[] = convertLanguage(
-    "flavor",
     pokemonSpeciesInfo?.flavor_text_entries
   );
+
+  // 포켓몬 이름 언어 변환
+  let nameText: nameTextType[] = convertLanguage(pokemonSpeciesInfo?.names);
 
   return (
     <div className="flex flex-col p-10 items-center bg-[#fff] rounded-2xl shadow-xl">
@@ -59,7 +67,7 @@ const PokemonDetailBox = ({ pokemonInfo, pokemonSpeciesInfo }: propsType) => {
       </div>
       <span className="font-bold text-gray-100"># {pokemonInfo?.id}</span>
       <span className="text-2xl font-bold">
-        {pokemonSpeciesInfo?.names[lang.langNum_name]?.name}
+        {nameText && nameText[0]?.name}
       </span>
       <div className="flex w-full justify-center group is-tab mt-3">
         {pokemonInfo?.types.map((type: PokemonType, index: number) => {

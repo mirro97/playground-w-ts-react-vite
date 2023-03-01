@@ -3,17 +3,19 @@ import { PokemonBasic, PokemonType } from "@/types";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import TypeLabel from "@/components/pokemon/typeLabel";
-import { useRecoilState } from "recoil";
-import { language } from "@/core/recoil/language";
+import TypeLabel from "@/components/common/typeLabel";
+import { convertLanguage } from "@/core/utils/convertLanguage";
 
 interface pokemonProps {
   pokemonIndex: string;
 }
 
-export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
-  const [lang, setLang] = useRecoilState(language);
+interface nameTextType {
+  language: PokemonBasic;
+  name: string;
+}
 
+export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
   const { data: pokemonInfo } = useQuery(
     ["pokemons", pokemonIndex],
     () => getPokemonInfo(`https://pokeapi.co/api/v2/pokemon/${pokemonIndex}`),
@@ -21,26 +23,25 @@ export const PokemonCard = ({ pokemonIndex }: pokemonProps) => {
   );
 
   const { data: pokemonSpeciesInfo } = useQuery(
-    ["pokemon-species", pokemonIndex],
-    () => getPokemonListWithSpecies(pokemonIndex),
-    { enabled: !!pokemonIndex }
+    ["pokemon-species", pokemonInfo?.species?.name],
+    () => getPokemonListWithSpecies(pokemonInfo?.species?.name),
+    { enabled: !!pokemonInfo?.species?.name }
   );
 
-  console.log("?", pokemonIndex);
-  // 현재 deoxys-normal 이란 이름이 없는데 접근해서 에러가 생김 -> -normal 삭제하는 함수 짜야할듯
+  // 포켓몬 설명 언어 변환
+  let nameText: nameTextType[] = convertLanguage(pokemonSpeciesInfo?.names);
+
   return (
     <Link
       to={`/pokemon/${pokemonInfo?.id}`}
-      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md min-w-full"
+      className="flex flex-col p-5 w-full bg-[#fff] rounded-2xl shadow-md"
     >
       <div className="flex items-center text-base">
         <img
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png"
           alt="포켓볼"
         />
-        <span className="font-galmuri">
-          {pokemonSpeciesInfo?.names[lang.langNum_name]?.name}
-        </span>
+        <span className="font-galmuri">{nameText && nameText[0]?.name}</span>
       </div>
       <span className="font-galmuri"># {pokemonInfo?.id}</span>
 

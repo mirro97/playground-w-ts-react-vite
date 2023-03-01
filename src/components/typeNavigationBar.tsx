@@ -1,5 +1,5 @@
 import { PokemonType } from "@/types";
-import TypeLabel from "./pokemon/typeLabel";
+import TypeLabel from "./common/typeLabel";
 
 const typeListAll = [
   { slot: 0, type: { name: "normal", url: "" } },
@@ -20,8 +20,6 @@ const typeListAll = [
   { slot: 0, type: { name: "dragon", url: "" } },
   { slot: 0, type: { name: "dark", url: "" } },
   { slot: 0, type: { name: "fairy", url: "" } },
-  { slot: 0, type: { name: "unknown", url: "" } },
-  { slot: 0, type: { name: "shadow", url: "" } },
 ];
 
 const TypeNavigationBar = () => {

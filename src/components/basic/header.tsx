@@ -32,8 +32,6 @@ export const Header = () => {
               onClick={() =>
                 setLang({
                   lang: "en",
-                  langNum_name: 8,
-                  langNum_type: 7,
                   langNum_genera: 7,
                 })
               }
@@ -47,8 +45,6 @@ export const Header = () => {
               onClick={() =>
                 setLang({
                   lang: "ko",
-                  langNum_name: 2,
-                  langNum_type: 1,
                   langNum_genera: 1,
                 })
               }
@@ -69,15 +65,11 @@ export const Header = () => {
                 if (lang.lang === "ko")
                   setLang({
                     lang: "en",
-                    langNum_name: 8,
-                    langNum_type: 7,
                     langNum_genera: 7,
                   });
                 else
                   setLang({
                     lang: "ko",
-                    langNum_name: 2,
-                    langNum_type: 1,
                     langNum_genera: 1,
                   });
               }}

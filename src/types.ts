@@ -39,11 +39,11 @@ export interface PokemonType {
 }
 
 export interface PokemonName {
-  name: string;
   language: {
     name: string;
     url: string;
   };
+  name: string;
 }
 
 export interface PokemonGenera {
@@ -156,7 +156,7 @@ export interface PokemonSpecies {
   };
   habitat: null;
   generation: PokemonBasic;
-  names: PokemonName[];
+  names: [];
   flavor_text_entries: [];
   form_descriptions: [];
   genera: PokemonGenera[];

@@ -59,7 +59,7 @@ const MainPage = () => {
             )}
             {/* {status === "error" && <p>{error?.message}</p>} */}
             {pokemonListAllStatus === "success" && (
-              <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
+              <div className="w-full mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
                 {pokemonListAll.pages.map((group, index) => (
                   <Pokemons key={index} pokemons={group.results} />
                 ))}

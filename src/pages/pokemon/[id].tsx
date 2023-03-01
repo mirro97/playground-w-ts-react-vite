@@ -28,8 +28,6 @@ const PokemonDetail = () => {
     { enabled: !!pokemonSpeciesInfo }
   );
 
-  console.log("!!", pokemonevolutionInfo);
-
   return (
     <div className="max-w-screen-lg mx-auto py-24 px-5">
       <PokemonDetailBox
