@@ -65,7 +65,7 @@ const PokemonType = () => {
           </button>
         </div>
       </div>
-      <div className="mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-6">
+      <div className="w-full mt-4 grid grid-cols-1 justify-items-center sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6">
         {typedPokemonList?.pokemon?.map((data: PokemonType, index: number) => (
           <PokemonCard key={index} pokemonIndex={data?.pokemon?.name} />
         ))}
